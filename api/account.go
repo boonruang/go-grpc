@@ -87,10 +87,8 @@ func (server *Server) ListAccount(ctx *gin.Context) {
 }
 
 type updateAccountRequest struct {
-	ID       int64  `json:"id" binding:"required,min=1"`
-	Owner    string `json:"owner"`
-	Balance  int64  `json:"balance"`
-	Currency string `json:"currency"`
+	ID      int64 `json:"id" binding:"required,min=1"`
+	Balance int64 `json:"balance"`
 }
 
 func (server *Server) updateAccount(ctx *gin.Context) {
@@ -140,5 +138,5 @@ func (server *Server) deleteAccount(ctx *gin.Context) {
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
 		return
 	}
-
+	ctx.JSON(http.StatusOK, gin.H{"result": "success"})
 }
