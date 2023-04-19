@@ -36,6 +36,8 @@ func main() {
 	go runGatewayServer(config, store)
 	runGrpcServer(config, store)
 
+	// runGinServer(config, store)
+
 }
 
 func runGrpcServer(config util.Config, store db.Store) {
@@ -53,7 +55,7 @@ func runGrpcServer(config util.Config, store db.Store) {
 		log.Fatal("cannot create listener:", err)
 	}
 
-	log.Printf("start gRPC serverat %s", listener.Addr().String())
+	log.Printf("start gRPC server at %s", listener.Addr().String())
 	err = grpcServer.Serve(listener)
 	if err != nil {
 		log.Fatal("cannot start gRPC server:", err)
